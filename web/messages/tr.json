@@ -35,7 +35,8 @@
     "txConfirmed": "İşlem onaylandı!",
     "txFailed": "İşlem başarısız",
     "insufficientBalance": "Yetersiz HOODIE bakiyesi",
-    "timeAgo": "{value}{unit} önce"
+    "timeAgo": "{value}{unit} önce",
+    "poweredBy": "destekleyen"
   },
   "home": {
     "heroBadge": "LAUNCHPAD FABRİKASI",

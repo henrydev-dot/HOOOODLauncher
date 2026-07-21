@@ -53,20 +53,10 @@ export default function LauncherPage({
   }
 
   return (
-    <div>
-      <ThemedScheme
-        launcher={launcher}
-        tokens={tokens ?? []}
-        trades={trades ?? []}
-      />
-      <div className="mx-auto max-w-7xl px-4 pb-8 text-right">
-        <Link
-          href={`/${slug}/admin`}
-          className="font-body text-lg text-white/30 hover:text-robin"
-        >
-          ⚙ {t("adminPanel")}
-        </Link>
-      </div>
-    </div>
+    <ThemedScheme
+      launcher={launcher}
+      tokens={tokens ?? []}
+      trades={trades ?? []}
+    />
   );
 }

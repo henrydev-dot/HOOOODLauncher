@@ -35,7 +35,8 @@
     "txConfirmed": "Transaction confirmed!",
     "txFailed": "Transaction failed",
     "insufficientBalance": "Insufficient HOODIE balance",
-    "timeAgo": "{value}{unit} ago"
+    "timeAgo": "{value}{unit} ago",
+    "poweredBy": "powered by"
   },
   "home": {
     "heroBadge": "LAUNCHPAD FACTORY",

@@ -4,8 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+import { Chrome } from "@/components/Chrome";
 import { Toaster } from "@/components/ui/Toaster";
 
 export const metadata: Metadata = {
@@ -39,9 +38,7 @@ export default async function RootLayout({
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
-            <Nav />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <Chrome>{children}</Chrome>
             <Toaster />
           </Providers>
         </NextIntlClientProvider>
