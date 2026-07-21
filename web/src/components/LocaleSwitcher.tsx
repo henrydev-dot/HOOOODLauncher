@@ -14,7 +14,7 @@ export function LocaleSwitcher() {
 
   return (
     <div className="flex border-2 border-black shadow-pixel-sm">
-      {(["tr", "en"] as const).map((l) => (
+      {(["en", "tr"] as const).map((l) => (
         <button
           key={l}
           onClick={() => setLocale(l)}
