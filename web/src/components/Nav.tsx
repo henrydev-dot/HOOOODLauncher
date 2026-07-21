@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
@@ -13,35 +14,37 @@ const ConnectButton = dynamic(
 
 export function Nav() {
   const t = useTranslations("nav");
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: "/explore", label: t("explore") },
+    { href: "/create", label: t("create") },
+    { href: "/docs", label: t("docs") },
+  ];
+
   return (
     <header className="sticky top-0 z-50 border-b-2 border-black bg-ink/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group shrink-0">
           <HoodieCat size={32} still />
           <span className="font-pixel text-sm text-robin group-hover:animate-blink">
             HOODIEPAD
           </span>
         </Link>
-        <nav className="ml-6 hidden items-center gap-5 md:flex">
-          <Link
-            href="/explore"
-            className="font-pixel text-[10px] uppercase text-white/70 hover:text-robin"
-          >
-            {t("explore")}
-          </Link>
-          <Link
-            href="/create"
-            className="font-pixel text-[10px] uppercase text-white/70 hover:text-robin"
-          >
-            {t("create")}
-          </Link>
-          <Link
-            href="/docs"
-            className="font-pixel text-[10px] uppercase text-white/70 hover:text-robin"
-          >
-            {t("docs")}
-          </Link>
+
+        {/* Desktop nav — larger, readable */}
+        <nav className="ml-8 hidden items-center gap-7 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="font-body text-xl uppercase tracking-wide text-white/70 transition-colors hover:text-robin"
+            >
+              {l.label}
+            </Link>
+          ))}
         </nav>
+
         <div className="ml-auto flex items-center gap-3">
           <LocaleSwitcher />
           <ConnectButton
@@ -49,19 +52,34 @@ export function Nav() {
             accountStatus="address"
             chainStatus="icon"
           />
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+            className="flex h-10 w-10 items-center justify-center border-2 border-black bg-panel text-robin shadow-pixel-sm md:hidden"
+          >
+            <span className="font-pixel text-base leading-none">
+              {open ? "✕" : "≡"}
+            </span>
+          </button>
         </div>
       </div>
-      <nav className="flex items-center justify-center gap-6 border-t border-white/10 py-2 md:hidden">
-        <Link href="/explore" className="font-pixel text-[9px] uppercase text-white/70">
-          {t("explore")}
-        </Link>
-        <Link href="/create" className="font-pixel text-[9px] uppercase text-white/70">
-          {t("create")}
-        </Link>
-        <Link href="/docs" className="font-pixel text-[9px] uppercase text-white/70">
-          {t("docs")}
-        </Link>
-      </nav>
+
+      {/* Mobile dropdown menu */}
+      {open && (
+        <nav className="flex flex-col border-t-2 border-black bg-ink md:hidden">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="border-b border-white/10 px-5 py-4 font-body text-2xl uppercase tracking-wide text-white/80 hover:bg-panel hover:text-robin"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
