@@ -11,5 +11,14 @@
     "contracts:build": "cd contracts && forge build",
     "contracts:test": "cd contracts && forge test -vv"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "keccak",
+      "bufferutil",
+      "utf-8-validate",
+      "unrs-resolver"
+    ]
+  }
 }
