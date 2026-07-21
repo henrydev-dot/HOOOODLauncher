@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-robin: #ccff00;
+  --color-ink: #0a0a0f;
+  --color-panel: #1a1a24;
+  --color-danger: #ff4d6d;
+  --color-mint: #00ffb2;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+html {
+  background: var(--color-ink);
+}
+
+body {
+  background-color: var(--color-ink);
+  background-image:
+    linear-gradient(rgba(204, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(204, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #ffffff;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+h1, h2, h3, h4, .font-pixel {
+  font-family: "Press Start 2P", monospace;
+}
+
+img, svg, canvas {
+  image-rendering: pixelated;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Pixel scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+  border-left: 2px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-panel);
+  border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-robin);
+}
+
+::selection {
+  background: var(--color-robin);
+  color: #000;
+}
+
+/* Idle bounce for mascots */
+@keyframes mascot-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.mascot-idle {
+  animation: mascot-idle 1.4s steps(2, jump-none) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot-idle,
+  .animate-idle-bounce,
+  .animate-marquee,
+  .animate-blink {
+    animation: none !important;
+  }
+}
+
+/* Blinking terminal cursor */
+.term-cursor::after {
+  content: "█";
+  animation: cursor-blink 1s steps(1) infinite;
+  color: var(--color-robin);
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* CRT scanlines overlay helper */
+.scanlines {
+  position: relative;
+}
+.scanlines::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  z-index: 5;
+}
+
+/* Chunky range input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: var(--color-panel);
+  border: 2px solid #000;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-robin);
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--color-robin);
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* RainbowKit font override */
+[data-rk] * {
+  font-family: "VT323", monospace !important;
+}
