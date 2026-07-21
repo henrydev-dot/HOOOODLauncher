@@ -1,0 +1,15 @@
+{
+  "name": "hoodiepad",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HOODIEPAD — no-code launchpad factory: spin up your own pump.fun-style launcher, every token paired with $HOODIE",
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "contracts:build": "cd contracts && forge build",
+    "contracts:test": "cd contracts && forge test -vv"
+  },
+  "packageManager": "pnpm@10.33.0"
+}

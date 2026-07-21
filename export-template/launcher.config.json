@@ -1,0 +1,18 @@
+{
+  "slug": "my-launcher",
+  "launcherId": 1,
+  "name": "MY LAUNCHER",
+  "themeColor": "#CCFF00",
+  "mascot": "🐸",
+  "scheme": "arcade",
+  "chainId": 11155111,
+  "contracts": {
+    "registry": "0x0000000000000000000000000000000000000000",
+    "factory": "0x0000000000000000000000000000000000000000",
+    "curve": "0x0000000000000000000000000000000000000000",
+    "graduation": "0x0000000000000000000000000000000000000000",
+    "feeSplitter": "0x0000000000000000000000000000000000000000",
+    "hoodie": "0xC72c01AAB5f5678dc1d6f5C6d2B417d91D402Ba3"
+  },
+  "apiUrl": "https://api.hoodiepad.xyz"
+}

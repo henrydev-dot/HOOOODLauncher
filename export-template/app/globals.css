@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+body {
+  @apply bg-bg text-white font-vt;
+  image-rendering: pixelated;
+}
+
+::selection {
+  @apply bg-primary text-black;
+}
+
+.pixel-panel {
+  @apply border-2 border-white/20 bg-panel shadow-pixel;
+}
+
+.pixel-btn {
+  @apply font-pixel text-xs px-4 py-3 border-2 border-black bg-primary text-black shadow-pixel
+    transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none
+    disabled:opacity-40 disabled:pointer-events-none;
+}
+
+.pixel-btn-ghost {
+  @apply font-pixel text-xs px-4 py-3 border-2 border-primary bg-transparent text-primary shadow-pixel-primary
+    transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none
+    disabled:opacity-40 disabled:pointer-events-none;
+}
+
+.pixel-input {
+  @apply w-full bg-black border-2 border-white/30 px-3 py-2 font-vt text-xl text-white
+    outline-none focus:border-primary;
+}
