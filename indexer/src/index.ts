@@ -114,7 +114,9 @@ ponder.on("BondingCurve:Trade", async ({ event, context }) => {
   const tokenRow = await context.db.find(tokens, { address: token });
   if (tokenRow !== null) {
     await context.db.update(tokens, { address: token }).set((row) => {
-      const reserveDelta = isBuy ? hoodieAmount - fee : -hoodieAmount;
+      // Buys credit the reserve net of fee; sells debit the gross amount
+      // (net payout + fee), matching BondingCurve's realHoodie accounting.
+      const reserveDelta = isBuy ? hoodieAmount - fee : -(hoodieAmount + fee);
       const nextReserve = row.realHoodieReserve + reserveDelta;
       return {
         lastPriceHoodie: price,
