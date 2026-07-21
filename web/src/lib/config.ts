@@ -32,8 +32,19 @@ export const FEESPLITTER_ADDRESS = addr(
   ZERO_ADDRESS
 );
 
-export const CHAIN_ID: 1 | 11155111 =
-  process.env.NEXT_PUBLIC_CHAIN_ID === "11155111" ? 11155111 : 1;
+/** Default network: Robinhood Chain mainnet (4663). */
+export const CHAIN_ID: 4663 | 46630 | 1 | 11155111 = (() => {
+  switch (process.env.NEXT_PUBLIC_CHAIN_ID) {
+    case "46630":
+      return 46630;
+    case "1":
+      return 1;
+    case "11155111":
+      return 11155111;
+    default:
+      return 4663;
+  }
+})();
 
 export const WC_PROJECT_ID =
   process.env.NEXT_PUBLIC_WC_PROJECT_ID || "demo";
@@ -62,10 +73,32 @@ export const FEES = {
   graduateCallerIncentiveBps: 5, // 0.05%
 } as const;
 
-export const EXPLORER_URL =
-  CHAIN_ID === 11155111
-    ? "https://sepolia.etherscan.io"
-    : "https://etherscan.io";
+export const EXPLORER_URL = (() => {
+  switch (CHAIN_ID) {
+    case 4663:
+      return "https://robinhoodchain.blockscout.com";
+    case 46630:
+      return "https://explorer.testnet.chain.robinhood.com";
+    case 11155111:
+      return "https://sepolia.etherscan.io";
+    default:
+      return "https://etherscan.io";
+  }
+})();
 
+/** Graduated pool link: DEX pool on Ethereum, explorer address page elsewhere. */
 export const UNISWAP_POOL_URL = (pair: string) =>
-  `https://app.uniswap.org/explore/pools/ethereum/${pair}`;
+  CHAIN_ID === 1
+    ? `https://app.uniswap.org/explore/pools/ethereum/${pair}`
+    : `${EXPLORER_URL}/address/${pair}`;
+
+/** $HOODIE info links surfaced on the home page. */
+export const HOODIE_LINKS = {
+  dexscreener:
+    process.env.NEXT_PUBLIC_HOODIE_DEXSCREENER_URL ||
+    `https://dexscreener.com/search?q=${HOODIE_ADDRESS}`,
+  explorer: `${EXPLORER_URL}/token/${HOODIE_ADDRESS}`,
+  buy:
+    process.env.NEXT_PUBLIC_HOODIE_BUY_URL ||
+    `https://dexscreener.com/search?q=${HOODIE_ADDRESS}`,
+} as const;

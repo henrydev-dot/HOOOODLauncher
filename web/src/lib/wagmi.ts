@@ -1,8 +1,8 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { mainnet, sepolia } from "wagmi/chains";
 import { CHAIN_ID, WC_PROJECT_ID } from "./config";
+import { SUPPORTED_CHAINS } from "./chains";
 
-export const activeChain = CHAIN_ID === 11155111 ? sepolia : mainnet;
+export const activeChain = SUPPORTED_CHAINS[CHAIN_ID];
 
 export const wagmiConfig = getDefaultConfig({
   appName: "HOODIEPAD",

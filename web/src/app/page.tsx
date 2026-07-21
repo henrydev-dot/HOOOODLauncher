@@ -10,6 +10,7 @@ import { PixelButton } from "@/components/ui/PixelButton";
 import { PixelPanel } from "@/components/ui/PixelPanel";
 import { PixelBadge } from "@/components/ui/PixelBadge";
 import { LauncherCard } from "@/components/LauncherCard";
+import { HoodieBanner } from "@/components/HoodieBanner";
 
 const PARADE_COLORS = ["#CCFF00", "#00FFB2", "#FF4D6D", "#00CFFF", "#FF9E00", "#C77DFF"];
 
@@ -103,6 +104,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* $HOODIE TOKEN INFO */}
+      <HoodieBanner />
 
       {/* TRENDING */}
       <section className="mx-auto max-w-7xl px-4 py-6">
